@@ -11,7 +11,7 @@ Mecanico.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        id_empleado: {
+        empleado_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'Empleados',

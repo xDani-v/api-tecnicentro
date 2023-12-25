@@ -1,5 +1,14 @@
 const Mecanico = require('../models/Mecanico');
 
+exports.getAllMecanicos = async (req, res) => {
+    try {
+        const mecanicos = await Mecanico.findAll();
+        res.json(mecanicos);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 exports.getMecanicoById = async (req, res) => {
     try {
         const mecanico = await Mecanico.findByPk(req.params.id);

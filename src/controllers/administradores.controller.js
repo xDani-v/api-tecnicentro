@@ -1,5 +1,15 @@
 const Administradores = require('../models/Administradores');
 
+
+exports.getAllAdministradores = async (req, res) => {
+    try {
+        const administradores = await Administradores.findAll();
+        res.json(administradores);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 exports.getAdministradorById = async (req, res) => {
     try {
         const administrador = await Administradores.findByPk(req.params.id);
