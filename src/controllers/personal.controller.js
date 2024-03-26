@@ -1,4 +1,17 @@
 const PersonalServicios = require('../models/Personal');
+const { QueryTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+
+exports.getAllPersonal = async (req, res) => {
+    try {
+        const personalServicios = await PersonalServicios.findAll();
+        res.json(personalServicios);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 
 exports.getPersonalServiciosById = async (req, res) => {
     try {
@@ -44,6 +57,23 @@ exports.deletePersonalServicios = async (req, res) => {
             return res.status(404).json({ error: 'PersonalServicios not found' });
         }
         res.json({ message: 'PersonalServicios deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+
+exports.getServiciosByIdPersonal = async (req, res) => {
+    try {
+        const id_personal = req.params.id; // Asegúrate de que estás obteniendo el id_personal de la manera correcta
+        const servicios = await sequelize.query(
+            "SELECT * FROM obtener_servicios_por_id_personal(:id)",
+            {
+                replacements: { id: id_personal },
+                type: QueryTypes.SELECT
+            }
+        );
+        res.json(servicios);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

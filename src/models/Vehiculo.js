@@ -26,6 +26,14 @@ Vehiculo.init(
         estado: {
             type: DataTypes.STRING,
         },
+        id_cliente: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'cliente',
+                key: 'id',
+            },
+        },
+
     },
     {
         sequelize,

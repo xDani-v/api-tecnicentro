@@ -17,6 +17,9 @@ Horarios.init(
         hora_salida: {
             type: DataTypes.STRING,
         },
+        dias: {
+            type: DataTypes.STRING,
+        },
     },
     {
         sequelize,

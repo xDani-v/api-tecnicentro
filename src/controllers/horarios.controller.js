@@ -1,5 +1,14 @@
 const Horarios = require('../models/Horarios');
 
+exports.getAllHorarios = async (req, res) => {
+    try {
+        const horarios = await Horarios.findAll();
+        res.json(horarios);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 exports.getHorariosById = async (req, res) => {
     try {
         const horarios = await Horarios.findByPk(req.params.id);

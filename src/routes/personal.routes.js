@@ -2,6 +2,8 @@ const express = require('express');
 const personalServiciosController = require('../controllers/personal.controller');
 const router = express.Router();
 
+router.get('', personalServiciosController.getAllPersonal);
+router.get('/ps/:id', personalServiciosController.getServiciosByIdPersonal);
 router.get('/:id', personalServiciosController.getPersonalServiciosById);
 router.post('/', personalServiciosController.createPersonalServicios);
 router.put('/:id', personalServiciosController.updatePersonalServicios);

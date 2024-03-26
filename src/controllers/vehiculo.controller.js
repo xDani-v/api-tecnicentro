@@ -1,5 +1,14 @@
 const Vehiculo = require('../models/Vehiculo');
 
+exports.getAllVehiculos = async (req, res) => {
+    try {
+        const vehiculo = await Vehiculo.findAll();
+        res.json(vehiculo);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 exports.getVehiculoById = async (req, res) => {
     try {
         const vehiculo = await Vehiculo.findByPk(req.params.id);

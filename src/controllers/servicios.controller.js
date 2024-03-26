@@ -1,5 +1,14 @@
 const Servicios = require('../models/Servicios');
 
+exports.getAllServicios = async (req, res) => {
+    try {
+        const servicios = await Servicios.findAll();
+        res.json(servicios);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 exports.getServiciosById = async (req, res) => {
     try {
         const servicios = await Servicios.findByPk(req.params.id);
